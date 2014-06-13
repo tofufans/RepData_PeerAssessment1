@@ -1,6 +1,6 @@
 Reproducible Research: Peer Assessment 1
 ========================================================
-This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 mintue intervals throughout the day. The data consists of two monthes of data from an anonymous individual collected during the monthes of October and November, 2012 and include the number of steps taken in 5 minute intervals each day. This assignment shows the results detailed below.
+This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 mintue intervals throughout the day. The data consists of two monthes of data from an anonymous individual collected during the monthes of October and November, 2012 and includes the number of steps taken in 5 minute intervals each day. This assignment shows the results detailed below.
 
 
 ### 1. load in data
@@ -19,6 +19,8 @@ hist(step_sum$steps, main = "Total number of steps taken per day", xlab = "steps
 ```
 
 ![plot of chunk figure1](figure/figure1.png) 
+
+### see figure 1
 
 
 ### 3. find mean and median of total number of steps taken per day
@@ -39,6 +41,8 @@ median(step_sum$steps)
 ## [1] 10765
 ```
 
+### mean: 10766, median:10765
+
 
 ### 4. display a plot: average daily activity pattern 
 
@@ -49,6 +53,8 @@ plot(step_ave$interval, step_ave$steps, type = "l", xlab = "5-minute interval",
 ```
 
 ![plot of chunk figure2](figure/figure2.png) 
+
+### see figure 2
 
 
 ### 5. find the interval with maximun steps
@@ -63,6 +69,8 @@ interval
 ## 104      835 206.2
 ```
 
+### average maxiumn steps: 206.2 at interval: 835
+
 
 ### 6. report total number of NA
 
@@ -73,6 +81,8 @@ sum(is.na(data))
 ```
 ## [1] 2304
 ```
+
+### number of NA: 2304
 
 
 ### 7. Input missing value with mean of each interval, built new dataset
@@ -94,6 +104,11 @@ hist(new_step_sum$steps, main = "Total number of steps taken per day", xlab = "s
 
 ![plot of chunk figure3](figure/figure3.png) 
 
+### see figure 3
+
+
+### 9. find the mean and median of the new dataset
+
 ```r
 mean(new_step_sum$steps)
 ```
@@ -110,9 +125,13 @@ median(new_step_sum$steps)
 ## [1] 10766
 ```
 
-Comparing the orginal data(with na) and the new data(replace na by mean of corresponding 5-min interval), it shows the same mean and the Frequency of total steps are higher with the new data. The reason for both is because the missing value is replaced by the corresponding 5-min interval.
+### mean: 10766, median: 10766  (new dataset)
 
-### 9. add a new column(day) in the new dataset and define it as 'weekday' or 'weekend' 
+
+### Comparing the orginal data(with na) and the new data(replace na by mean of corresponding 5-min interval), it shows they have same mean(10766); however, the frequency of total steps is different, the new data has higher frequency. The reason for both is: the missing value is replaced by the corresponding 5-min interval.
+
+
+### 10. add a new column(day) in the new dataset and define it as 'weekday' or 'weekend' 
 
 ```r
 new_data$day <- weekdays(as.Date(new_data$date))
@@ -122,7 +141,7 @@ new_data$day <- replace(new_data$day, new_data$day != "weekend", "weekday")
 ```
 
 
-### 10. display plots: average daily activity pattern for 'weekend' and 'weekday'
+### 11. display plots: average daily activity pattern for 'weekend' and 'weekday'
 
 ```r
 weekend_data <- subset(new_data[, 1:3], new_data$day == "weekend")
@@ -139,4 +158,7 @@ plot(weekday_ave$interval, weekday_ave$steps, type = "l", xlab = "5-min interval
 
 ![plot of chunk figure4](figure/figure4.png) 
 
-It is observed that average daily activity pattern for 'weekend' and 'weekday' is different
+### see figure 4
+
+
+### It is observed that average daily activity pattern for 'weekend' and 'weekday' is different. Weekend has two high peaks while weekday has one; however, weekday has a higher average maximum.
