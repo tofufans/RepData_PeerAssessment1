@@ -162,3 +162,6 @@ plot(weekday_ave$interval, weekday_ave$steps, type = "l", xlab = "5-min interval
 
 
 ### It is observed that average daily activity pattern for 'weekend' and 'weekday' is different. Weekend has two high peaks while weekday has one; however, weekday has a higher average maximum.
+
+
+### Remark: all figures are under figures folder
